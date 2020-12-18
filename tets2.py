@@ -1,16 +1,3 @@
-board = [
-    [7,8,0,4,0,0,1,2,0],
-    [6,0,0,0,7,5,0,0,9],
-    [0,0,0,6,0,1,0,7,8],
-    [0,0,7,0,4,0,2,6,0],
-    [0,0,1,0,5,0,9,3,0],
-    [9,0,4,0,6,0,0,0,5],
-    [0,7,0,3,0,0,0,1,2],
-    [1,2,0,0,0,7,4,0,0],
-    [0,4,9,2,0,6,0,0,7]
-]
-
-
 def solve(bo):
     find = find_empty(bo)
     if not find:
@@ -18,7 +5,7 @@ def solve(bo):
     else:
         row, col = find
 
-    for i in range(1,10):
+    for i in range(1, 10):
         if valid(bo, i, (row, col)):
             bo[row][col] = i
 
@@ -47,7 +34,7 @@ def valid(bo, num, pos):
 
     for i in range(box_y*3, box_y*3 + 3):
         for j in range(box_x * 3, box_x*3 + 3):
-            if bo[i][j] == num and (i,j) != pos:
+            if bo[i][j] == num and (i, j) != pos:
                 return False
 
     return True
@@ -76,7 +63,40 @@ def find_empty(bo):
 
     return None
 
-print_board(board)
+
+f = open("input.txt")
+# board:list
+board = []
+# list=board
+
+for line in f:
+    board1 = []
+    for c in line:
+
+        if c == "\n":
+            continue
+        elif c == ".":
+            board1.append(0)
+        else:
+            board1.append(int(c))
+        if len(board1) == 9:
+            board.append(board1)
+            board1 = []
+#print_board(board)
 solve(board)
 print("___________________")
-print_board(board)
+solve =print_board(board)
+#exit(0)
+#board = []
+f2 = open("output.txt", "w")
+slines = ""
+sline = ""
+for list1 in board:
+    for i in list1:
+        sline = sline + str(i)
+sline+(sline)
+
+
+
+f2.write(str(sline))
+f2.close()
